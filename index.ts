@@ -164,7 +164,7 @@ function filterGenerateSitting(rule: string, level: string, status: string) {
     }
   }
 }
-console.log(fixedNumberGeneration(40,['xa*xb','ax*bx'],['Complement','Uncomplement'],['Easy','Difficult']))
+//console.log(fixedNumberGeneration(40,['xa*xb','ax*bx'],['Complement','Uncomplement'],['Easy','Difficult']))
 //console.log(generateComplement(ezComplement, 'hard', 'single'));
 // Write TypeScript code!
 const appDiv: HTMLElement = document.getElementById('app');
