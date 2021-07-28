@@ -1,4 +1,8 @@
-function generatePoss(generation: string[], level: string, rule: string) {
+export function generatePoss(
+  generation: string[],
+  level: string,
+  rule: string
+) {
   let fN = 6,
     sN = 6,
     rang = 9;
@@ -56,7 +60,7 @@ function generatePoss(generation: string[], level: string, rule: string) {
   }
   return generation;
 }
-function generateComplement(
+export function generateComplement(
   arrComplement: string[],
   level: string,
   rule: string
@@ -64,7 +68,7 @@ function generateComplement(
   let fN = 5,
     sN = 1,
     rang = 9;
-  if (rule == 'xa*xb') {
+  if (rule == 'xa*xb' || rule == 'ab*xx') {
     if (level == 'Easy') {
       fN = 1;
       rang = 5;
@@ -87,6 +91,11 @@ function generateComplement(
       } else if (rule == 'ax*bx') {
         let firstNum = j.toString() + i.toString();
         let secondNum = (10 - j).toString() + i.toString();
+        let fullNum = firstNum + '*' + secondNum;
+        arrComplement.push(fullNum);
+      } else if (rule == 'ab*xx') {
+        let firstNum = i.toString() + i.toString();
+        let secondNum = j.toString() + (10 - j).toString(); //متتم للعشرة
         let fullNum = firstNum + '*' + secondNum;
         arrComplement.push(fullNum);
       }
