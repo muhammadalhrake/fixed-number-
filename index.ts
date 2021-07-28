@@ -4,7 +4,7 @@ let hard = new Array();
 let ez=new Array();
 
 
-function generatePoss([],level:string,rule:string){
+function generatePoss(generation:string[],level:string,rule:string){
   let fN,sN,rang;
   if(rule=='tens'){
     if(level=='ez'){
@@ -30,7 +30,14 @@ function generatePoss([],level:string,rule:string){
   for(let i=fN;i<=rang;i++){
     for(let j=sN;j<=rang;j++){
       for(let k=j;k<=rang;k++){
-        
+        if(rule=='tens'){
+          let firstNum=(i.toString()+j.toString())
+          let secondNum=(i.toString()+k.toString())
+          let fullNum=(firstNum + "*" +secondNum)
+          generation.push(fullNum)
+        }else if(rule=='single'){
+          
+        }
       }
     }
   }
