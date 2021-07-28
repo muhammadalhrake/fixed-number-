@@ -110,7 +110,7 @@ export function generateComplement(
   return arrComplement;
 }
 
-function generateQuestion(
+export function generateQuestion(
   stateLevelArr: string[],
   rule: string,
   state: string,
