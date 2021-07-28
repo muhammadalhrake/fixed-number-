@@ -1,12 +1,8 @@
 // Import stylesheets
 import './style.css';
 // imports
-import { Probability } from './fixed-model';
+import { monad } from './fixed-model';
 import { generateQuestion } from './fixed-generation';
-let tensHard = new Array();
-let tensEz = new Array();
-let hardComplement = new Array();
-let ezComplement = new Array();
 let fixedProbability = {
   tens: {
     Complement: {
@@ -45,7 +41,8 @@ function fixedNumberGeneration(
   cases: string[],
   levels: string[]
 ) {
-  for (let i = 0; i < count; i++) {
+  let generateQuestions = new Array<monad>();
+  for (let i = 0; i < count;) {
     for (let j = 0; j < rules.length && i < count; j++) {
       for (let k = 0; k < cases.length && i < count; k++) {
         for (let l = 0; l < levels.length && i < count; l++) {
@@ -53,12 +50,16 @@ function fixedNumberGeneration(
           let rule = rules[j];
           let status = cases[k];
           let level = levels[l];
+          let generate=filterGenerateSitting(rule,level,status).generate;
+          generateQuestions.push(generate);
+          i++;
         }
       }
     }
   }
+  return generateQuestions;
 }
-function filterSitting(rule: string, level: string, status: string) {
+function filterGenerateSitting(rule: string, level: string, status: string) {
   if (rule == 'xa*xb') {
     if (status == 'Complement') {
       if (level == 'Easy') {
@@ -93,7 +94,7 @@ function filterSitting(rule: string, level: string, status: string) {
         );
       }
     }
-  } else if (rule == 'xa*xb') {
+  } else if (rule == 'ax*bx') {
     if (status == 'Complement') {
       if (level == 'Easy') {
         return generateQuestion(
@@ -163,7 +164,7 @@ function filterSitting(rule: string, level: string, status: string) {
     }
   }
 }
-// console.log(generatePoss())
+console.log(fixedNumberGeneration(40,['xa*xb','ax*bx'],['Complement','Uncomplement'],['Easy','Difficult']))
 //console.log(generateComplement(ezComplement, 'hard', 'single'));
 // Write TypeScript code!
 const appDiv: HTMLElement = document.getElementById('app');
