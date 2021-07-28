@@ -1,3 +1,9 @@
+import random from "random";
+import { ansArray } from "./fixed-anwers";
+
+function between(min: number, max: number) {
+  return random.int(min, max);
+}
 export function generatePoss(
   generation: string[],
   level: string,
@@ -110,7 +116,26 @@ function generateQuestion(
   state: string,
   level: string
 ) {
-  if(state=='Complement'){
-    
+  let copyGeneration = {
+    levelArray:[] ,
+    generate: {
+      answers: [5, 5, 5, 5],
+      firstNumber: 5,
+      secondNumber: 5
+    }
+  };
+  if(stateLevelArr.length==0){
+    generateComplement(stateLevelArr,level,rule);
   }
+  let random = between(0, stateLevelArr.length - 1);
+    let mumber = stateLevelArr[random];
+    let question = mumber.split('*');
+    copyGeneration.generate.firstNumber = +question[0];
+    copyGeneration.generate.secondNumber = +question[1];
+    copyGeneration.generate.answers = ansArray(+question[0], +question[1]);
+
+    copyGeneration.levelArray = stateLevelArr.filter(
+      value => value != mumber
+    );
+    return copyGeneration;
 }
