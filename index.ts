@@ -11,8 +11,27 @@ function generatePoss([],level:string,rule:string){
       fN=1;
       sN=0;
       rang=5;
-    }else if('singel'){
-
+    }else if(level=='hard'){
+      fN=6;
+      sN=6;
+      rang=9;
+    }
+  }else if(rule=='single'){
+    if(level=='ez'){
+      fN=0;
+      sN=1;
+      rang=5;
+    }else if(level=='hard'){
+      fN=6;
+      sN=6;
+      rang=9;
+    }
+  }
+  for(let i=fN;i<=rang;i++){
+    for(let j=sN;j<=rang;j++){
+      for(let k=j;k<=rang;k++){
+        
+      }
     }
   }
 }
