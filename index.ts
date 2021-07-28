@@ -7,7 +7,7 @@ let tensHard = new Array();
 let tensEz = new Array();
 let hardComplement = new Array();
 let ezComplement = new Array();
-let fixedProbability = {
+let fixedProbability:Probability = {
   tens: {
     Complement: {
       Easy: new Array(),
