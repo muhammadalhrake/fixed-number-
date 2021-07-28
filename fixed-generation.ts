@@ -72,3 +72,4 @@ function generateComplement(
   }
   return arrComplement;
 }
+function 
