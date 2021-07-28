@@ -3,13 +3,13 @@ function generatePoss(generation: string[], level: string, rule: string) {
     sN = 6,
     rang = 9;
   if (rule == 'tens') {
-    if (level == 'ez') {
+    if (level == 'Easy') {
       fN = 1;
       sN = 0;
       rang = 5;
     }
   } else if (rule == 'single') {
-    if (level == 'ez') {
+    if (level == 'Easy') {
       fN = 0;
       sN = 1;
       rang = 5;
@@ -43,14 +43,14 @@ function generateComplement(
     sN = 1,
     rang = 9;
   if (rule == 'tens') {
-    if (level == 'ez') {
+    if (level == 'Easy') {
       fN = 1;
       rang = 5;
     } else {
       fN = 6;
     }
   } else if (rule == 'single') {
-    if (level == 'ez') {
+    if (level == 'Easy') {
       fN = 0;
       rang = 4;
     }
