@@ -104,6 +104,13 @@ export function generateComplement(
   return arrComplement;
 }
 
-function generateQuestion(){
-  
+function generateQuestion(
+  stateLevelArr: string[],
+  rule: string,
+  state: string,
+  level: string
+) {
+  if(state=='Complement'){
+    
+  }
 }
