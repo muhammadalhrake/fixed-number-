@@ -1,7 +1,7 @@
 // Import stylesheets
 import './style.css';
-let hard = new Array();
-let ez = new Array();
+let tensHard = new Array();
+let tensEz = new Array();
 let hardComplement = new Array();
 let ezComplement = new Array();
 
