@@ -103,3 +103,5 @@ export function generateComplement(
   }
   return arrComplement;
 }
+
+function 
