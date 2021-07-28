@@ -104,4 +104,6 @@ export function generateComplement(
   return arrComplement;
 }
 
-function 
+function generateQuestion(){
+  
+}

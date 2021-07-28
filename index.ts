@@ -2,6 +2,7 @@
 import './style.css';
 // imports
 import { generatePoss } from './fixed-generation';
+import { Probability } from './fixed-model';
 let tensHard = new Array();
 let tensEz = new Array();
 let hardComplement = new Array();
