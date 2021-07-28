@@ -1,4 +1,5 @@
 import random from 'random';
+
 function shuffle(a: any[]) {
   let array = [...a];
   let j, x, i;
