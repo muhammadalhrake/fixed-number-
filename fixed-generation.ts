@@ -22,9 +22,12 @@ function generatePoss(generation: string[], level: string, rule: string) {
     }
   }
   /* rule حالايت ال  */
-  /* xa*xb // الثابت بالعشرات في الرقمين */
-  /* ax*bx // الثابت بالاحاد في الرقمين  */
-  /* ab*xx // الثابت بالاحاد والعشرات في رقم واحد  */
+  /* xa*xb rule // الثابت بالعشرات في الرقمين */
+  /* ax*bx rule // الثابت بالاحاد في الرقمين  */
+  /* ab*xx rule // الثابت بالاحاد والعشرات في رقم واحد  */
+  /* i cont is x in rule */
+  /* j cont is a in rule */
+  /* k cont is b in rule */
   for (let i = fN; i <= rang; i++) {
     for (let j = sN; j <= rang; j++) {
       let h = j;
