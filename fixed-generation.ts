@@ -1,11 +1,11 @@
-import random from "random";
-import { ansArray } from "./fixed-anwers";
+import random from 'random';
+import { ansArray } from './fixed-anwers';
 
 function between(min: number, max: number) {
   return random.int(min, max);
 }
-export function generatePoss(
-  generation: string[],
+export function generateUnComplement(
+  arrUnComplement: string[],
   level: string,
   rule: string
 ) {
@@ -49,22 +49,22 @@ export function generatePoss(
           let firstNum = i.toString() + j.toString();
           let secondNum = i.toString() + k.toString();
           let fullNum = firstNum + '*' + secondNum;
-          generation.push(fullNum);
+          arrUnComplement.push(fullNum);
         } else if (rule == 'ax*bx') {
           let firstNum = j.toString() + i.toString();
           let secondNum = k.toString() + i.toString();
           let fullNum = firstNum + '*' + secondNum;
-          generation.push(fullNum);
+          arrUnComplement.push(fullNum);
         } else if (rule == 'ab*xx') {
           let firstNum = i.toString() + i.toString();
           let secondNum = j.toString() + k.toString();
           let fullNum = firstNum + '*' + secondNum;
-          generation.push(fullNum);
+          arrUnComplement.push(fullNum);
         }
       }
     }
   }
-  return generation;
+  return arrUnComplement;
 }
 export function generateComplement(
   arrComplement: string[],
@@ -117,25 +117,27 @@ function generateQuestion(
   level: string
 ) {
   let copyGeneration = {
-    levelArray:[] ,
+    levelArray: [''],
     generate: {
       answers: [5, 5, 5, 5],
       firstNumber: 5,
       secondNumber: 5
     }
   };
-  if(stateLevelArr.length==0){
-    generateComplement(stateLevelArr,level,rule);
+  if (stateLevelArr.length == 0) {
+    if (state == 'Complement') {
+      generateComplement(stateLevelArr, level, rule);
+    } else if (state == 'UnComplement') {
+      generateUnComplement(stateLevelArr, level, rule);
+    }
   }
   let random = between(0, stateLevelArr.length - 1);
-    let mumber = stateLevelArr[random];
-    let question = mumber.split('*');
-    copyGeneration.generate.firstNumber = +question[0];
-    copyGeneration.generate.secondNumber = +question[1];
-    copyGeneration.generate.answers = ansArray(+question[0], +question[1]);
+  let mumber = stateLevelArr[random];
+  let question = mumber.split('*');
+  copyGeneration.generate.firstNumber = +question[0];
+  copyGeneration.generate.secondNumber = +question[1];
+  copyGeneration.generate.answers = ansArray(+question[0], +question[1]);
 
-    copyGeneration.levelArray = stateLevelArr.filter(
-      value => value != mumber
-    );
-    return copyGeneration;
+  copyGeneration.levelArray = stateLevelArr.filter(value => value != mumber);
+  return copyGeneration;
 }
