@@ -68,10 +68,8 @@ function fixedNumberGeneration(
   return generateQuestions;
 }
 
-console.log(
-  fixedNumberGeneration(40, ['xa*xb'], ['Complement'], ['Difficult'])
-);
-console.log(fixedProbability);
+//console.log(fixedNumberGeneration(40, ['xa*xb'], ['Complement'], ['Difficult']));
+//console.log(fixedProbability);
 //console.log(generateComplement(ezComplement, 'hard', 'single'));
 // Write TypeScript code!
 const appDiv: HTMLElement = document.getElementById('app');
