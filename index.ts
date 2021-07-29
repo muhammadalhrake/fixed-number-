@@ -63,13 +63,26 @@ function fixedNumberGeneration(
   return generateQuestions;
 }
 function filterGenerateSitting(rule: string, level: string, status: string) {
-  let copy: {
-    levelArray: poss;
+  let copy = {
+    levelArray: {
+      tens: {
+        Complement: { Easy: [''], Difficult: [''] },
+        unComplement: { Easy: [''], Difficult: [''] }
+      },
+      single: {
+        Complement: { Easy: [''], Difficult: [''] },
+        unComplement: { Easy: [''], Difficult: [''] }
+      },
+      mixed: {
+        Complement: { Easy: [''], Difficult: [''] },
+        unComplement: { Easy: [''], Difficult: [''] }
+      }
+    },
     generate: {
-      answers: number[];
-      firstNumber: number;
-      secondNumber: number;
-    };
+      answers: [5, 5, 5, 5],
+      firstNumber: 5,
+      secondNumber: 5
+    }
   };
   if (rule == 'xa*xb') {
     if (status == 'Complement') {
@@ -216,7 +229,10 @@ function filterGenerateSitting(rule: string, level: string, status: string) {
     }
   }
 }
-//console.log(fixedNumberGeneration(40,['xa*xb'],['Complement'],['Easy']))
+console.log(
+  fixedNumberGeneration(40, ['xa*xb'], ['Complement'], ['Difficult'])
+);
+console.log(fixedProbability);
 //console.log(generateComplement(ezComplement, 'hard', 'single'));
 // Write TypeScript code!
 const appDiv: HTMLElement = document.getElementById('app');

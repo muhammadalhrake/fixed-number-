@@ -131,14 +131,14 @@ export function generateQuestion(
       generateUnComplement(stateLevelArr, level, rule);
     }
   }
-  //console.log(stateLevelArr);
   let random = between(0, stateLevelArr.length - 1);
   let mumber = stateLevelArr[random];
   let question = mumber.split('*');
   copyGeneration.generate.firstNumber = +question[0];
   copyGeneration.generate.secondNumber = +question[1];
   copyGeneration.generate.answers = ansArray(+question[0], +question[1]);
-
+  
   copyGeneration.levelArray = stateLevelArr.filter(value => value != mumber);
+  console.log(stateLevelArr)
   return copyGeneration;
 }
