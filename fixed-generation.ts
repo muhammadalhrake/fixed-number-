@@ -131,6 +131,7 @@ export function generateQuestion(
       generateUnComplement(stateLevelArr, level, rule);
     }
   }
+  //console.log(stateLevelArr);
   let random = between(0, stateLevelArr.length - 1);
   let mumber = stateLevelArr[random];
   let question = mumber.split('*');

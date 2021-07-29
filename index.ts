@@ -1,37 +1,37 @@
 // Import stylesheets
 import './style.css';
 // imports
-import { monad } from './fixed-model';
+import { monad, poss } from './fixed-model';
 import { generateQuestion } from './fixed-generation';
-let fixedProbability = {
+let fixedProbability: poss = {
   tens: {
     Complement: {
-      Easy: new Array(),
-      Difficult: new Array()
+      Easy: new Array<string>(),
+      Difficult: new Array<string>()
     },
     unComplement: {
-      Easy: new Array(),
-      Difficult: new Array()
+      Easy: new Array<string>(),
+      Difficult: new Array<string>()
     }
   },
   single: {
     Complement: {
-      Easy: new Array(),
-      Difficult: new Array()
+      Easy: new Array<string>(),
+      Difficult: new Array<string>()
     },
     unComplement: {
-      Easy: new Array(),
-      Difficult: new Array()
+      Easy: new Array<string>(),
+      Difficult: new Array<string>()
     }
   },
   mixed: {
     Complement: {
-      Easy: new Array(),
-      Difficult: new Array()
+      Easy: new Array<string>(),
+      Difficult: new Array<string>()
     },
     unComplement: {
-      Easy: new Array(),
-      Difficult: new Array()
+      Easy: new Array<string>(),
+      Difficult: new Array<string>()
     }
   }
 };
@@ -42,7 +42,7 @@ function fixedNumberGeneration(
   levels: string[]
 ) {
   let generateQuestions = new Array<monad>();
-  for (let i = 0; i < count;) {
+  for (let i = 0; i < count; ) {
     for (let j = 0; j < rules.length && i < count; j++) {
       for (let k = 0; k < cases.length && i < count; k++) {
         for (let l = 0; l < levels.length && i < count; l++) {
@@ -50,8 +50,11 @@ function fixedNumberGeneration(
           let rule = rules[j];
           let status = cases[k];
           let level = levels[l];
-          let generate=filterGenerateSitting(rule,level,status).generate;
+          let statusGeneration = filterGenerateSitting(rule, level, status);
+          let generate = statusGeneration.generate;
+          fixedProbability = statusGeneration.levelArray;
           generateQuestions.push(generate);
+          //console.log(generate);
           i++;
         }
       }
@@ -60,111 +63,160 @@ function fixedNumberGeneration(
   return generateQuestions;
 }
 function filterGenerateSitting(rule: string, level: string, status: string) {
+  let copy: {
+    levelArray: poss;
+    generate: {
+      answers: number[];
+      firstNumber: number;
+      secondNumber: number;
+    };
+  };
   if (rule == 'xa*xb') {
     if (status == 'Complement') {
       if (level == 'Easy') {
-        return generateQuestion(
+        let statusGeneration = generateQuestion(
           fixedProbability.tens.Complement.Easy,
           rule,
           status,
           level
         );
+        copy.levelArray.tens.Complement.Easy = statusGeneration.levelArray;
+        copy.generate = statusGeneration.generate;
+        return copy;
       } else {
-        return generateQuestion(
+        let statusGeneration = generateQuestion(
           fixedProbability.tens.Complement.Difficult,
           rule,
           status,
           level
         );
+        copy.levelArray.tens.Complement.Difficult = statusGeneration.levelArray;
+        copy.generate = statusGeneration.generate;
+        return copy;
       }
     } else {
       if (level == 'Easy') {
-        return generateQuestion(
+        let statusGeneration = generateQuestion(
           fixedProbability.tens.unComplement.Easy,
           rule,
           status,
           level
         );
+        copy.levelArray.tens.unComplement.Easy = statusGeneration.levelArray;
+        copy.generate = statusGeneration.generate;
+        return copy;
       } else {
-        return generateQuestion(
+        let statusGeneration = generateQuestion(
           fixedProbability.tens.unComplement.Difficult,
           rule,
           status,
           level
         );
+        copy.levelArray.tens.unComplement.Difficult =
+          statusGeneration.levelArray;
+        copy.generate = statusGeneration.generate;
+        return copy;
       }
     }
   } else if (rule == 'ax*bx') {
     if (status == 'Complement') {
       if (level == 'Easy') {
-        return generateQuestion(
+        let statusGeneration = generateQuestion(
           fixedProbability.single.Complement.Easy,
           rule,
           status,
           level
         );
+        copy.levelArray.single.Complement.Easy = statusGeneration.levelArray;
+        copy.generate = statusGeneration.generate;
+        return copy;
       } else {
-        return generateQuestion(
+        let statusGeneration = generateQuestion(
           fixedProbability.single.Complement.Difficult,
           rule,
           status,
           level
         );
+        copy.levelArray.single.Complement.Difficult =
+          statusGeneration.levelArray;
+        copy.generate = statusGeneration.generate;
+        return copy;
       }
     } else {
       if (level == 'Easy') {
-        return generateQuestion(
+        let statusGeneration = generateQuestion(
           fixedProbability.single.unComplement.Easy,
           rule,
           status,
           level
         );
+        copy.levelArray.single.unComplement.Easy = statusGeneration.levelArray;
+        copy.generate = statusGeneration.generate;
+        return copy;
       } else {
-        return generateQuestion(
+        let statusGeneration = generateQuestion(
           fixedProbability.single.unComplement.Difficult,
           rule,
           status,
           level
         );
+        copy.levelArray.single.unComplement.Difficult =
+          statusGeneration.levelArray;
+        copy.generate = statusGeneration.generate;
+        return copy;
       }
     }
   } else if (rule == 'ab*xx') {
     if (status == 'Complement') {
       if (level == 'Easy') {
-        return generateQuestion(
+        let statusGeneration = generateQuestion(
           fixedProbability.mixed.Complement.Easy,
           rule,
           status,
           level
         );
+        copy.levelArray.mixed.Complement.Easy = statusGeneration.levelArray;
+        copy.generate = statusGeneration.generate;
+        return copy;
       } else {
-        return generateQuestion(
+        let statusGeneration = generateQuestion(
           fixedProbability.mixed.Complement.Difficult,
           rule,
           status,
           level
         );
+        copy.levelArray.mixed.Complement.Difficult =
+          statusGeneration.levelArray;
+        copy.generate = statusGeneration.generate;
+        return copy;
       }
     } else {
       if (level == 'Easy') {
-        return generateQuestion(
+        let statusGeneration = generateQuestion(
           fixedProbability.mixed.unComplement.Easy,
           rule,
           status,
           level
         );
+        copy.levelArray.mixed.unComplement.Easy = statusGeneration.levelArray;
+        copy.generate = statusGeneration.generate;
+        return copy;
       } else {
-        return generateQuestion(
+        let statusGeneration = generateQuestion(
           fixedProbability.mixed.unComplement.Difficult,
           rule,
           status,
           level
         );
+        copy.levelArray.mixed.unComplement.Difficult =
+          statusGeneration.levelArray;
+        copy.generate = statusGeneration.generate;
+        return copy;
       }
     }
   }
 }
-//console.log(fixedNumberGeneration(40,['xa*xb','ax*bx'],['Complement','Uncomplement'],['Easy','Difficult']))
+//console.log(fixedNumberGeneration(40,['xa*xb'],['Complement'],['Easy']))
 //console.log(generateComplement(ezComplement, 'hard', 'single'));
 // Write TypeScript code!
 const appDiv: HTMLElement = document.getElementById('app');
