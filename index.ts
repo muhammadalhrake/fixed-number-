@@ -1,9 +1,9 @@
 // Import stylesheets
 import './style.css';
 // imports
-import { monad, poss } from './fixed-model';
+import { monad, statusOfFixedGeneration } from './fixed-model';
 import { filterGenerateSitting, generateQuestion } from './fixed-generation';
-let fixedProbability: poss = {
+let fixedProbability: statusOfFixedGeneration = {
   tens: {
     Complement: {
       Easy: new Array<string>(),

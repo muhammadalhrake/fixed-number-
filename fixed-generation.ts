@@ -137,12 +137,17 @@ export function generateQuestion(
   copyGeneration.generate.firstNumber = +question[0];
   copyGeneration.generate.secondNumber = +question[1];
   copyGeneration.generate.answers = ansArray(+question[0], +question[1]);
-  
+
   copyGeneration.levelArray = stateLevelArr.filter(value => value != mumber);
-  console.log(stateLevelArr)
+  console.log(stateLevelArr);
   return copyGeneration;
 }
-export function filterGenerateSitting(fixedProbability,rule: string, level: string, status: string) {
+export function filterGenerateSitting(
+  fixedProbability,
+  rule: string,
+  level: string,
+  status: string
+) {
   let copy = {
     levelArray: {
       tens: {

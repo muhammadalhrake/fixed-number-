@@ -4,7 +4,7 @@ export interface monad {
   secondNumber: number;
 }
 
-export interface poss {
+export interface statusOfFixedGeneration {
   tens?: {
     Complement: {
       Easy: string[];
