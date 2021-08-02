@@ -72,7 +72,6 @@ export function generateComplement(
   rule: string
 ) {
   let fN = 5,
-    sN = 1,
     rang = 9;
   if (rule == 'xa*xb' || rule == 'ab*xx') {
     if (level == 'Easy') {
