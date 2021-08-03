@@ -1,5 +1,6 @@
 import random from 'random';
 import { ansArray } from './fixed-anwers';
+import { statusOfFixedGeneration } from './fixed-model';
 
 function between(min: number, max: number) {
   return random.int(min, max);
@@ -126,40 +127,41 @@ export function generateQuestion(
   if (stateLevelArr.length == 0) {
     if (state == 'Complement') {
       generateComplement(stateLevelArr, level, rule);
-    } else if (state == 'UnComplement') {
+    } else if (state == 'Uncomplement') {
       generateUnComplement(stateLevelArr, level, rule);
     }
   }
+  console.log(stateLevelArr.length);
   let random = between(0, stateLevelArr.length - 1);
   let mumber = stateLevelArr[random];
   let question = mumber.split('*');
   copyGeneration.generate.firstNumber = +question[0];
   copyGeneration.generate.secondNumber = +question[1];
   copyGeneration.generate.answers = ansArray(+question[0], +question[1]);
-
+  console.log(+question[0] + '  ' + +question[1]);
   copyGeneration.levelArray = stateLevelArr.filter(value => value != mumber);
   console.log(stateLevelArr);
   return copyGeneration;
 }
 export function filterGenerateSitting(
-  fixedProbability,
+  fixedProbability: statusOfFixedGeneration,
   rule: string,
-  level: string,
-  status: string
+  status: string,
+  level: string
 ) {
   let copy = {
     levelArray: {
       tens: {
-        Complement: { Easy: [''], Difficult: [''] },
-        unComplement: { Easy: [''], Difficult: [''] }
+        Complement: { Easy: [], Difficult: [] },
+        unComplement: { Easy: [], Difficult: [] }
       },
       single: {
-        Complement: { Easy: [''], Difficult: [''] },
-        unComplement: { Easy: [''], Difficult: [''] }
+        Complement: { Easy: [], Difficult: [] },
+        unComplement: { Easy: [], Difficult: [] }
       },
       mixed: {
-        Complement: { Easy: [''], Difficult: [''] },
-        unComplement: { Easy: [''], Difficult: [''] }
+        Complement: { Easy: [], Difficult: [] },
+        unComplement: { Easy: [], Difficult: [] }
       }
     },
     generate: {
@@ -177,7 +179,9 @@ export function filterGenerateSitting(
           status,
           level
         );
-        copy.levelArray.tens.Complement.Easy = statusGeneration.levelArray;
+
+        fixedProbability.tens.Complement.Easy = statusGeneration.levelArray;
+        copy.levelArray = fixedProbability;
         copy.generate = statusGeneration.generate;
         return copy;
       } else {
@@ -187,7 +191,9 @@ export function filterGenerateSitting(
           status,
           level
         );
-        copy.levelArray.tens.Complement.Difficult = statusGeneration.levelArray;
+        fixedProbability.tens.Complement.Difficult =
+          statusGeneration.levelArray;
+        copy.levelArray = fixedProbability;
         copy.generate = statusGeneration.generate;
         return copy;
       }
@@ -209,8 +215,9 @@ export function filterGenerateSitting(
           status,
           level
         );
-        copy.levelArray.tens.unComplement.Difficult =
+        fixedProbability.tens.unComplement.Difficult =
           statusGeneration.levelArray;
+        copy.levelArray = fixedProbability;
         copy.generate = statusGeneration.generate;
         return copy;
       }
@@ -224,7 +231,8 @@ export function filterGenerateSitting(
           status,
           level
         );
-        copy.levelArray.single.Complement.Easy = statusGeneration.levelArray;
+        fixedProbability.single.Complement.Easy = statusGeneration.levelArray;
+        copy.levelArray = fixedProbability;
         copy.generate = statusGeneration.generate;
         return copy;
       } else {
@@ -234,8 +242,9 @@ export function filterGenerateSitting(
           status,
           level
         );
-        copy.levelArray.single.Complement.Difficult =
+        fixedProbability.single.Complement.Difficult =
           statusGeneration.levelArray;
+        copy.levelArray = fixedProbability;
         copy.generate = statusGeneration.generate;
         return copy;
       }
@@ -247,7 +256,8 @@ export function filterGenerateSitting(
           status,
           level
         );
-        copy.levelArray.single.unComplement.Easy = statusGeneration.levelArray;
+        fixedProbability.single.unComplement.Easy = statusGeneration.levelArray;
+        copy.levelArray = fixedProbability;
         copy.generate = statusGeneration.generate;
         return copy;
       } else {
@@ -257,8 +267,9 @@ export function filterGenerateSitting(
           status,
           level
         );
-        copy.levelArray.single.unComplement.Difficult =
+        fixedProbability.single.unComplement.Difficult =
           statusGeneration.levelArray;
+        copy.levelArray = fixedProbability;
         copy.generate = statusGeneration.generate;
         return copy;
       }
@@ -272,7 +283,8 @@ export function filterGenerateSitting(
           status,
           level
         );
-        copy.levelArray.mixed.Complement.Easy = statusGeneration.levelArray;
+        fixedProbability.mixed.Complement.Easy = statusGeneration.levelArray;
+        copy.levelArray = fixedProbability;
         copy.generate = statusGeneration.generate;
         return copy;
       } else {
@@ -282,8 +294,9 @@ export function filterGenerateSitting(
           status,
           level
         );
-        copy.levelArray.mixed.Complement.Difficult =
+        fixedProbability.mixed.Complement.Difficult =
           statusGeneration.levelArray;
+        copy.levelArray = fixedProbability;
         copy.generate = statusGeneration.generate;
         return copy;
       }
@@ -295,7 +308,8 @@ export function filterGenerateSitting(
           status,
           level
         );
-        copy.levelArray.mixed.unComplement.Easy = statusGeneration.levelArray;
+        fixedProbability.mixed.unComplement.Easy = statusGeneration.levelArray;
+        copy.levelArray = fixedProbability;
         copy.generate = statusGeneration.generate;
         return copy;
       } else {
@@ -305,8 +319,9 @@ export function filterGenerateSitting(
           status,
           level
         );
-        copy.levelArray.mixed.unComplement.Difficult =
+        fixedProbability.mixed.unComplement.Difficult =
           statusGeneration.levelArray;
+        copy.levelArray = fixedProbability;
         copy.generate = statusGeneration.generate;
         return copy;
       }

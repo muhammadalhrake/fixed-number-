@@ -5,7 +5,7 @@ export interface monad {
 }
 
 export interface statusOfFixedGeneration {
-  tens?: {
+  tens: {
     Complement: {
       Easy: string[];
       Difficult: string[];
@@ -15,7 +15,7 @@ export interface statusOfFixedGeneration {
       Difficult: string[];
     };
   };
-  single?: {
+  single: {
     Complement: {
       Easy: string[];
       Difficult: string[];
@@ -25,7 +25,7 @@ export interface statusOfFixedGeneration {
       Difficult: string[];
     };
   };
-  mixed?: {
+  mixed: {
     Complement: {
       Easy: string[];
       Difficult: string[];
